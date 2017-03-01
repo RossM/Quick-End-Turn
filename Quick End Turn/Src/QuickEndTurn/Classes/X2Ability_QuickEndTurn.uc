@@ -70,7 +70,7 @@ static function EventListenerReturn QuickEndTurnListener(Object EventData, Objec
 	SourceState = XComGameState_Unit(EventData);
 	foreach History.IterateByClassType(class'XComGameState_Unit', UnitState)
 	{
-		if (UnitState.ControllingPlayer.ObjectID == SourceState.ControllingPlayer.ObjectID)
+		if (UnitState.ControllingPlayer.ObjectID == SourceState.ControllingPlayer.ObjectID && !UnitState.bRemovedFromPlay)
 		{
 			if (ShouldReload(UnitState))
 				UnitState.AutoRunBehaviorTree('QuickEndTurn', 2);
