@@ -4,7 +4,8 @@ static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
 
-	Templates.AddItem(CreateQuickEndTurnAbility());
+	Templates.AddItem(CreateQuickEndTurnAbility('QuickEndTurn', false));
+	Templates.AddItem(CreateQuickEndTurnAbility('QuickEndTurn_Commander', true));
 
 	// This reloads the weapon, but doesn't wait for the animation to finish.
 	Templates.AddItem(AddFastReloadAbility());
@@ -12,15 +13,18 @@ static function array<X2DataTemplate> CreateTemplates()
 	return Templates;
 }
 
-static function X2DataTemplate CreateQuickEndTurnAbility()
+static function X2DataTemplate CreateQuickEndTurnAbility(name TemplateName, bool bCommanderAbility)
 {
 	local X2AbilityTemplate Template;
 	local X2AbilityCost_ActionPoints ActionPointCost;
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'QuickEndTurn');
+	`CREATE_X2ABILITY_TEMPLATE(Template, TemplateName);
 	Template.IconImage = "img:///UIQuickEndTurn.UIPerk_overwatch_cycle";
-	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.PLACE_EVAC_PRIORITY;
+	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.PLACE_EVAC_PRIORITY + 1;
 	Template.ConcealmentRule = eConceal_Always;
+	Template.bCommanderAbility = bCommanderAbility;
+    Template.AbilitySourceName = 'eAbilitySource_Commander';
+    Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
 
 	ActionPointCost = new class'X2AbilityCost_ActionPoints';
 	ActionPointCost.iNumPoints = 1;
@@ -42,7 +46,7 @@ static function X2DataTemplate CreateQuickEndTurnAbility()
 
 simulated function XComGameState QuickEndTurn_BuildGameState( XComGameStateContext Context )
 {
-	local XComGameState_Unit UnitState, SourceState;
+	local XComGameState_Unit SourceState;
 	local XComGameStateHistory History;
 	local XComGameState NewGameState;
 	local X2EventManager EventMgr;

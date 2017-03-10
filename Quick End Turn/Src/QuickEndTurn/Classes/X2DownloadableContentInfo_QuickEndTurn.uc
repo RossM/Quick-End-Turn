@@ -44,7 +44,10 @@ static event OnPostTemplatesCreated()
 		{
 			CharTemplate = X2CharacterTemplate(DataTemplate);
 			if (CharTemplate.bIsSoldier)
+			{
 				CharTemplate.Abilities.AddItem('QuickEndTurn');
+				CharTemplate.Abilities.AddItem('QuickEndTurn_Commander');
+			}
 		}
 	}
 
