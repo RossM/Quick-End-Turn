@@ -17,6 +17,7 @@ static function X2DataTemplate CreateQuickEndTurnAbility(name TemplateName, bool
 {
 	local X2AbilityTemplate Template;
 	local X2AbilityCost_ActionPoints ActionPointCost;
+	local X2Condition_UnitProperty ShooterCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, TemplateName);
 	Template.IconImage = "img:///UIQuickEndTurn.UIPerk_overwatch_cycle";
@@ -35,6 +36,10 @@ static function X2DataTemplate CreateQuickEndTurnAbility(name TemplateName, bool
 	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
 	Template.AbilityToHitCalc = default.DeadEye;
 	Template.AbilityTargetStyle = default.SelfTarget;
+
+	ShooterCondition = new class'X2Condition_UnitProperty';
+	ShooterCondition.ExcludeDead = true;
+	Template.AbilityShooterConditions.AddItem(ShooterCondition);
 
 	// Template.bCommanderAbility = true;
 	Template.BuildNewGameStateFn = QuickEndTurn_BuildGameState;
@@ -74,7 +79,7 @@ static function EventListenerReturn QuickEndTurnListener(Object EventData, Objec
 	SourceState = XComGameState_Unit(EventData);
 	foreach History.IterateByClassType(class'XComGameState_Unit', UnitState)
 	{
-		if (UnitState.ControllingPlayer.ObjectID == SourceState.ControllingPlayer.ObjectID && !UnitState.bRemovedFromPlay)
+		if (UnitState.ControllingPlayer.ObjectID == SourceState.ControllingPlayer.ObjectID && !UnitState.bRemovedFromPlay && UnitState.IsAlive())
 		{
 			if (ShouldReload(UnitState))
 				UnitState.AutoRunBehaviorTree('QuickEndTurn', 2);
