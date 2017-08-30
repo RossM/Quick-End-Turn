@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # XCOM ModBuddy Solution File, Format Version 11.00
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{5DAE07AF-E217-45C1-8DE7-FF99D6011E8A}") = "Quick End Turn", "Quick End Turn\Quick End Turn.x2proj", "{832E4E98-4EA8-40C1-BFB4-026F57CEADF6}"
+Project("{5DAE07AF-E217-45C1-8DE7-FF99D6011E8A}") = "Smart Overwatch All", "Smart Overwatch All\Smart Overwatch All.x2proj", "{832E4E98-4EA8-40C1-BFB4-026F57CEADF6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

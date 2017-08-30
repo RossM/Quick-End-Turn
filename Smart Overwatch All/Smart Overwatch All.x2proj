@@ -2,11 +2,11 @@
 <Project ToolsVersion="12.0" DefaultTargets="Default" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Guid>be940ab5-b4f6-4f26-808e-e17fdf80c9a0</Guid>
-    <Name>Quick End Turn</Name>
+    <Name>Smart Overwatch All</Name>
     <Description>End your turn, quickly.</Description>
     <SteamPublishID>0</SteamPublishID>
-    <AssemblyName>Quick End Turn</AssemblyName>
-    <RootNamespace>Quick End Turn</RootNamespace>
+    <AssemblyName>Smart Overwatch All</AssemblyName>
+    <RootNamespace>Smart Overwatch All</RootNamespace>
     <ProjectGuid>{832e4e98-4ea8-40c1-bfb4-026f57ceadf6}</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
@@ -14,17 +14,17 @@
     <Folder Include="Content\" />
     <Folder Include="Localization\" />
     <Folder Include="Src\" />
-    <Folder Include="Src\QuickEndTurn\" />
-    <Folder Include="Src\QuickEndTurn\Classes\" />
+    <Folder Include="Src\SmartOverwatchAll\" />
+    <Folder Include="Src\SmartOverwatchAll\Classes\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config\XComAI.ini">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Content\UIQuickEndTurn.upk">
+    <Content Include="Content\UISmartOverwatchAll.upk">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="QuickEndTurn.XComMod">
+    <Content Include="SmartOverwatchAll.XComMod">
       <SubType>Content</SubType>
     </Content>
     <Content Include="ReadMe.txt" />
@@ -33,10 +33,13 @@
     <Content Include="Config\XComEngine.ini" />
     <Content Include="Config\XComGame.ini" />
     <Content Include="Localization\XComGame.int" />
-    <Content Include="Src\QuickEndTurn\Classes\X2Ability_QuickEndTurn.uc">
+    <Content Include="Src\SmartOverwatchAll\Classes\X2Ability_SmartOverwatchAll.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\QuickEndTurn\Classes\X2DownloadableContentInfo_QuickEndTurn.uc" />
+    <Content Include="Src\SmartOverwatchAll\Classes\X2AIBTConditions_SmartOverwatchAll.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SmartOverwatchAll\Classes\X2DownloadableContentInfo_SmartOverwatchAll.uc" />
   </ItemGroup>
   <Import Project="$(MSBuildLocalExtensionPath)\XCOM2.targets" />
   <Target Name="ReplaceModInfo" AfterTargets="Build">
